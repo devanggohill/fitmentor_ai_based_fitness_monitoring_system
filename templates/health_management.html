@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-gray-200 min-h-screen flex flex-col items-center justify-center">
+    <div class="w-full max-w-3xl bg-gray-800 shadow-lg rounded-lg p-8">
+        <div class="flex items-center justify-center mb-6">
+            <i class="fas fa-apple-alt text-green-400 text-4xl mr-3"></i>
+            <h1 class="text-3xl font-bold text-gray-100">Nutrition Analysis Tool</h1>
+        </div>
+        <p class="text-gray-400 text-center mb-8">Upload an image of food items and get detailed calorie analysis.</p>
+
+        <form method="POST" enctype="multipart/form-data" class="space-y-6">
+            <!-- Input Prompt -->
+            <div>
+                <label for="input_prompt" class="block text-sm font-medium text-gray-300">Prompt</label>
+                <div class="flex items-center mt-1">
+                    <i class="fas fa-edit text-gray-400 mr-3"></i>
+                    <input
+                        type="text"
+                        id="input_prompt"
+                        name="input_prompt"
+                        required
+                        class="flex-1 rounded-md bg-gray-700 border border-gray-600 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                        placeholder="Enter your input prompt"
+                    >
+                </div>
+            </div>
+
+            <!-- File Upload -->
+            <div>
+                <label for="image" class="block text-sm font-medium text-gray-300">Upload Image</label>
+                <div class="flex items-center mt-1">
+                    <i class="fas fa-upload text-gray-400 mr-3"></i>
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        accept="image/*"
+                        required
+                        class="flex-1 text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-600 file:text-blue-400 hover:file:bg-gray-700"
+                    >
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-center">
+                <button
+                    type="submit"
+                    class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium text-sm leading-5 rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-400"
+                >
+                    <i class="fas fa-search mr-2"></i>
+                    Analyze
+                </button>
+            </div>
+        </form>
+
+        <!-- Image Preview -->
+        <div id="image-preview" class="mt-8 hidden">
+            <h2 class="text-lg font-semibold text-gray-200 mb-2">Uploaded Image:</h2>
+            <img src="#" alt="Uploaded Image" id="preview-image" class="w-full h-auto rounded-md border border-gray-600">
+        </div>
+
+        <!-- Response Section -->
+        {% if response %}
+            <div class="mt-8 bg-gray-700 rounded-md p-4 border border-gray-600">
+                <h2 class="text-lg font-semibold text-gray-100 mb-4">Analysis Results:</h2>
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    {% for point in response.split("\n") %}
+                        <li>{{ point }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        // JavaScript for Image Preview
+        const imageInput = document.getElementById('image');
+        const imagePreview = document.getElementById('image-preview');
+        const previewImage = document.getElementById('preview-image');
+
+        imageInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    previewImage.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

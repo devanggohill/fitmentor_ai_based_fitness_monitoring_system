@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #000000, #003366); /* Dark black and blue gradient */
+        }
+
+        .background-icons {
+            background-image: url('https://cdn-icons-png.flaticon.com/512/3093/3093464.png'), url('https://cdn-icons-png.flaticon.com/512/3093/3093402.png'), url('https://cdn-icons-png.flaticon.com/512/3093/3093465.png');
+            background-size: 80px 80px;
+            background-repeat: no-repeat;
+            background-position: 10% 20%, 60% 30%, 90% 60%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-black to-blue-900">
+
+    <!-- Background icons -->
+    <div class="background-icons"></div>
+
+    <div class="flex items-center justify-center min-h-screen relative">
+        <div class="bg-gradient-to-br from-blue-800 to-black shadow-xl rounded-lg p-8 max-w-md w-full transform transition-all duration-500 hover:shadow-2xl hover:scale-105">
+            <h3 class="text-3xl font-semibold text-white text-center mb-6">Personalized Diet Calculator</h3>
+
+            <form id="dietForm" class="space-y-4">
+                <div class="relative">
+                    <label for="name" class="block text-gray-300 font-semibold mb-2">Name</label>
+                    <input type="text" id="name" class="w-full px-4 py-3 text-white bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10" placeholder="Enter your name" required>
+                    <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                        <img src="https://cdn-icons-png.flaticon.com/512/194/194938.png" class="w-5 h-5" alt="user icon">
+                    </span>
+                </div>
+
+                <div class="relative">
+                    <label for="height" class="block text-gray-300 font-semibold mb-2">Height (cm)</label>
+                    <input type="number" id="height" class="w-full px-4 py-3 text-white bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10" placeholder="Enter your height in cm" required>
+                    <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2941/2941661.png" class="w-5 h-5" alt="height icon">
+                    </span>
+                </div>
+
+                <div class="relative">
+                    <label for="weight" class="block text-gray-300 font-semibold mb-2">Weight (kg)</label>
+                    <input type="number" id="weight" class="w-full px-4 py-3 text-white bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10" placeholder="Enter your weight in kg" required>
+                    <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3812/3812418.png" class="w-5 h-5" alt="weight icon">
+                    </span>
+                </div>
+
+                <div class="relative">
+                    <label for="exerciseLevel" class="block text-gray-300 font-semibold mb-2">Exercise Level</label>
+                    <select id="exerciseLevel" class="w-full px-4 py-3 text-white bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-10" required>
+                        <option value="" disabled selected>Select your exercise level</option>
+                        <option value="1.2">Sedentary (little to no exercise)</option>
+                        <option value="1.375">Lightly Active (light exercise/sports 1-3 days/week)</option>
+                        <option value="1.55">Moderately Active (moderate exercise/sports 3-5 days/week)</option>
+                        <option value="1.725">Very Active (hard exercise/sports 6-7 days/week)</option>
+                        <option value="1.9">Super Active (very hard exercise, physical job, or training)</option>
+                    </select>
+                    <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1998/1998643.png" class="w-5 h-5" alt="exercise icon">
+                    </span>
+                </div>
+
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-md font-semibold text-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Calculate</button>
+            </form>
+
+            <div class="result text-center mt-6 text-lg font-semibold text-white"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('dietForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Retrieve user inputs
+            const name = document.getElementById('name').value.trim();
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const exerciseLevel = parseFloat(document.getElementById('exerciseLevel').value);
+
+            // Calculate BMR using Mifflin-St Jeor Equation
+            const bmr = 10 * weight + 6.25 * height - 5 * 25 + 5; // Assuming age = 25, gender = male
+
+            // Adjust BMR based on exercise level
+            const caloricNeeds = Math.round(bmr * exerciseLevel);
+
+            // Display result
+            const resultDiv = document.querySelector('.result');
+            resultDiv.innerHTML = `Hello <strong>${name}</strong>! Based on your input, your daily caloric needs are approximately 
+                <span class="text-blue-400">${caloricNeeds} calories</span>.
+            `;
+        });
+    </script>
+
+</body>
+</html>

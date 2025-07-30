@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212; /* Dark theme background */
+            color: #f3f4f6; /* Light text color for contrast */
+            position: relative;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Animating icons */
+        @keyframes moveIcons {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(10deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        /* Fitness icons for background */
+        .background-icon {
+            position: absolute;
+            opacity: 0.5; /* Increased opacity for visibility */
+            animation: moveIcons 12s ease-in-out infinite;
+            font-size: 5rem; /* Large icon size */
+        }
+
+        .icon1 { top: 10%; left: 5%; animation-duration: 14s; }
+        .icon2 { top: 15%; right: 10%; animation-duration: 16s; }
+        .icon3 { bottom: 10%; left: 15%; animation-duration: 18s; }
+        .icon4 { top: 30%; right: 20%; animation-duration: 20s; }
+        .icon5 { bottom: 15%; left: 30%; animation-duration: 22s; }
+        .icon6 { top: 40%; right: 40%; animation-duration: 24s; }
+        .icon7 { bottom: 25%; left: 50%; animation-duration: 26s; }
+        .icon8 { top: 50%; right: 60%; animation-duration: 28s; }
+        .icon9 { bottom: 35%; left: 60%; animation-duration: 30s; }
+
+        /* Main container styling */
+        .container {
+            background-color: #1f2937; /* Darker container for contrast */
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+            background-color: #4CAF50; /* Light green buttons */
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            background-color: #45a049;
+        }
+
+        .video-container {
+            background: #2d3748; /* Dark background for video section */
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .exercise-info {
+            background-color: #2d3748; /* Darker grey background for content */
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .exercise-info h3 {
+            color: #f3f4f6; /* Light color for headings */
+        }
+
+        /* Adjust button style */
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .btn i {
+            margin-right: 10px;
+        }
+
+        /* Responsive icons size */
+        @media (max-width: 768px) {
+            .background-icon {
+                font-size: 4rem; /* Slightly smaller icons for mobile */
+            }
+        }
+    </style>
+</head>
+<body class="h-screen flex items-center justify-center">
+
+<!-- Background icons -->
+<i class="fas fa-dumbbell background-icon icon1"></i>
+<i class="fas fa-arrow-up background-icon icon2"></i>
+<i class="fas fa-legs background-icon icon3"></i>
+<i class="fas fa-arrow-down background-icon icon4"></i>
+<i class="fas fa-bicycle background-icon icon5"></i>
+<i class="fas fa-running background-icon icon6"></i>
+<i class="fas fa-heartbeat background-icon icon7"></i>
+<i class="fas fa-yoga background-icon icon8"></i>
+<i class="fas fa-weight-hanging background-icon icon9"></i>
+
+<div class="container mx-auto p-8 w-full max-w-3xl">
+
+    <!-- Header -->
+    <h1 class="text-4xl font-bold text-gray-100 mb-6 text-center">Exercise Tracker</h1>
+
+    <!-- Exercise Buttons -->
+    <div class="grid grid-cols-2 gap-6 mb-8">
+        <button id="btn-biceps" class="btn text-white py-4 px-6 rounded-2xl shadow-lg flex items-center justify-center">
+            <i class="fas fa-dumbbell mr-2"></i>Biceps
+        </button>
+        <button id="btn-shoulder-press" class="btn text-white py-4 px-6 rounded-2xl shadow-lg flex items-center justify-center">
+            <i class="fas fa-arrow-up mr-2"></i>Shoulder Press
+        </button>
+        <button id="btn-squat" class="btn text-white py-4 px-6 rounded-2xl shadow-lg flex items-center justify-center">
+            <i class="fas fa-legs mr-2"></i>Squat
+        </button>
+        <button id="btn-deadlift" class="btn text-white py-4 px-6 rounded-2xl shadow-lg flex items-center justify-center">
+            <i class="fas fa-arrow-down mr-2"></i>Deadlift
+        </button>
+    </div>
+
+    <!-- Video Feed Section -->
+    <div class="video-container mb-8">
+        <div class="exercise-info p-8">
+            <h3 class="text-xl font-semibold text-gray-100 mb-6" id="exercise-name">Select an Exercise</h3>
+            <div class="relative w-full h-90 bg-gray-300 rounded-xl overflow-hidden">
+                <img id="video-feed" class="w-full h-full object-cover transition-all duration-300" src="" alt="Exercise Video">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="text-center text-gray-400 text-sm">
+        <p>Track your progress, one rep at a time.</p>
+        <p class="mt-4">Powered by Your Fitness App</p>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script>
+    // Function to update the video feed based on the selected exercise
+    function startExercise(exercise) {
+        // Set exercise name and video feed
+        document.getElementById('exercise-name').textContent = exercise.charAt(0).toUpperCase() + exercise.slice(1);
+        document.getElementById('video-feed').src = `/video_feed/${exercise}`; // Use a dynamic video URL here
+    }
+
+    // Event listeners for exercise buttons
+    document.getElementById('btn-biceps').addEventListener('click', function () {
+        startExercise('biceps');
+    });
+
+    document.getElementById('btn-shoulder-press').addEventListener('click', function () {
+        startExercise('shoulder_press');
+    });
+
+    document.getElementById('btn-squat').addEventListener('click', function () {
+        startExercise('squat');
+    });
+
+    document.getElementById('btn-deadlift').addEventListener('click', function () {
+        startExercise('deadlift');
+    });
+</script>
+
+</body>
+</html>

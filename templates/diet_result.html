@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Diet Result</title>
+</head>
+<body>
+    <h1>Diet Plan for {{ name }}</h1>
+    <p>Age: {{ age }}</p>
+    <p>Weight: {{ weight }} kg</p>
+    <p>Exercise Level: {{ exercise_level }}</p>
+    <h2>Total Calories: {{ total_calories }}</h2>
+    <h3>Nutrition Breakdown:</h3>
+    <ul>
+        {% for item in nutrition_data %}
+            <li>{{ item.name }}: {{ item.calories }} calories</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

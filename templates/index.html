@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <style>
+        .card:hover {
+            transform: translateX(-10px);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-[#1C39BB] to-[#7AC5CD]">
+    <!-- First Section: Gym Image with Navbar -->
+    <div class="w-full bg-cover bg-center h-[600px] relative" style="background-image: url('https://wallpaperaccess.com/full/834288.jpg');">
+        <div class="bg-black bg-opacity-50 h-full flex justify-center items-center absolute inset-0">
+            <!-- Navbar inside the first section -->
+            <nav class="absolute top-0 left-0 w-full py-4">
+                <div class="card mx-auto flex items-center justify-between px-6 py-2">
+                    <a href="/" class="text-white text-xl font-bold">Exercise Tracker</a>
+                    <div class="flex space-x-4">
+                        <a href="/exercise" class="text-white hover:text-gray-300 text-lg">Track Exercise</a>
+                        <a href="/health_management" class="text-white hover:text-gray-300 text-lg">intelligent manager</a>
+                        <a href="/example" class="text-white hover:text-gray-300 text-lg">Diet intake</a>
+                    </div>
+                </div>
+            </nav>
+            <h1 class="text-white text-4xl font-bold">Welcome to Your Fitness Journey</h1>
+        </div>
+    </div>
+
+    <!-- Grid of Cards Section -->
+    <div class="container mx-auto py-10">
+        <h2 class="text-3xl font-bold text-center mb-8">Fitness Quotes</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card 1 -->
+            <div class="card max-w-sm rounded-lg overflow-hidden shadow-lg bg-gray-800 text-white">
+                <img class="w-full h-48 object-cover" src="https://i.ytimg.com/vi/eZeCxLz7ics/maxresdefault.jpg" alt="Quote 1">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">"No Pain, No Gain"</div>
+                    <p class="text-gray-300 text-base">
+                        "The pain you feel today will be the strength you feel tomorrow."
+                    </p>
+                </div>
+                <div class="px-6 pt-4 pb-2">
+                    <span class="inline-block bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-300 mr-2 mb-2">#motivation</span>
+                    <span class="inline-block bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-300 mr-2 mb-2">#fitness</span>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="card max-w-sm rounded-lg overflow-hidden shadow-lg bg-gray-800 text-white">
+                <img class="w-full h-48 object-cover" src="https://freedesignfile.com/upload/2017/03/Exercise-the-perfect-muscle-Stock-Photo-08.jpg" alt="Quote 2">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">"Stronger Every Day"</div>
+                    <p class="text-gray-300 text-base">
+                        "It’s not about being the best; it’s about being better than you were yesterday."
+                    </p>
+                </div>
+                <div class="px-6 pt-4 pb-2">
+                    <span class="inline-block bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-300 mr-2 mb-2">#inspiration</span>
+                    <span class="inline-block bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-300 mr-2 mb-2">#workout</span>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="card max-w-sm rounded-lg overflow-hidden shadow-lg bg-gray-800 text-white">
+                <img class="w-full h-48 object-cover" src="https://www.fitness-index.com/wp-content/uploads/2020/01/interval3-400x246.png" alt="Quote 3">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">"Keep Moving"</div>
+                    <p class="text-gray-300 text-base">
+                        "The only bad workout is the one that didn’t happen."
+                    </p>
+                </div>
+                <div class="px-6 pt-4 pb-2">
+                    <span class="inline-block bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-300 mr-2 mb-2">#consistency</span>
+                    <span class="inline-block bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-300 mr-2 mb-2">#health</span>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="card max-w-sm rounded-lg overflow-hidden shadow-lg bg-gray-800 text-white">
+                <img class="w-full h-48 object-cover" src="https://wallpaperbat.com/img/872392-exercise-wallpaper.jpg" alt="Quote 4">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">"Push Yourself"</div>
+                    <p class="text-gray-300 text-base">
+                        "Success starts with self-discipline. Push yourself because no one else will do it for you."
+                    </p>
+                </div>
+                <div class="px-6 pt-4 pb-2">
+                    <span class="inline-block bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-300 mr-2 mb-2">#selfdiscipline</span>
+                    <span class="inline-block bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-300 mr-2 mb-2">#focus</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Third Section: Circular Icons -->
+    <div class="container mx-auto mt-12">
+        <h2 class="text-center text-3xl font-bold text-gray-800 mb-8">Popular Activities</h2>
+        <div class="flex justify-center gap-12">
+            <div class="flex flex-col items-center">
+                <div class="bg-gray-200 rounded-full w-24 h-24 flex justify-center items-center text-2xl text-gray-700 shadow-lg">🏋️</div>
+                <p class="mt-4 text-gray-600">Weightlifting</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="bg-gray-200 rounded-full w-24 h-24 flex justify-center items-center text-2xl text-gray-700 shadow-lg">🤸</div>
+                <p class="mt-4 text-gray-600">Gymnastics</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="bg-gray-200 rounded-full w-24 h-24 flex justify-center items-center text-2xl text-gray-700 shadow-lg">🏃</div>
+                <p class="mt-4 text-gray-600">Running</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="bg-gray-200 rounded-full w-24 h-24 flex justify-center items-center text-2xl text-gray-700 shadow-lg">🚴</div>
+                <p class="mt-4 text-gray-600">Cycling</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer: About Section -->
+    <footer class="bg-gray-900 text-white mt-12">
+        <div class="container mx-auto px-6 py-8">
+            <h3 class="text-lg font-bold">About Us</h3>
+            <p class="mt-4 text-gray-300">
+                Welcome to Exercise Tracker, your companion in achieving fitness goals. Start tracking your workouts today and stay motivated with us!
+            </p>
+            <p class="mt-4 text-gray-400">© 2024 Exercise Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
